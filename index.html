@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bundle Deck - Buff.Labs x Extra + Biletebi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    
+    <style>
+        #passwordGate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+        }
+        
+        .password-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .password-logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .password-subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .password-input:focus {
+            border-color: #0099ff;
+        }
+        
+        .password-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #0099ff;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .password-btn:hover {
+            background: #0077cc;
+        }
+        
+        .password-error {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .main-content {
+            display: none;
+        }
+        
+        .main-content.unlocked {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Gate -->
+    <div id="passwordGate">
+        <div class="password-container">
+            <div class="password-logo">Buff.Labs</div>
+            <div class="password-subtitle">Enter password to access the presentation</div>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
+            <button class="password-btn" id="passwordBtn">Access Presentation</button>
+            <div class="password-error" id="passwordError">Incorrect password. Please try again.</div>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden by default) -->
+    <div class="main-content" id="mainContent">
+    
+    <!-- Hidden SVG Icon Definitions -->
+    <svg style="display: none;" aria-hidden="true">
+        <!-- Content Generation Engine Icon -->
+        <symbol id="icon-content-generation" viewBox="0 0 24 24">
+            <g>
+                <path d="M22.86 9.1425H24v5.715h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M21.72 14.857499999999998h1.1400000000000001v2.2874999999999996h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M21.72 6.862500000000001h1.1400000000000001v2.2800000000000002h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M20.572499999999998 17.145h1.1475v2.2874999999999996h-1.1475Z" fill="currentColor"></path>
+                <path d="M20.572499999999998 4.574999999999999h1.1475v2.2874999999999996h-1.1475Z" fill="currentColor"></path>
+                <path d="M19.4325 19.4325h1.1400000000000001v1.1400000000000001h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="m20.572499999999998 11.43 -1.1400000000000001 0 0 1.1475 -1.1400000000000001 0 0 1.1400000000000001 1.1400000000000001 0 0 1.1400000000000001 1.1400000000000001 0 0 -1.1400000000000001 1.1475 0 0 -1.1400000000000001 -1.1475 0 0 -1.1475z" fill="currentColor"></path>
+                <path d="M19.4325 3.435h1.1400000000000001V4.574999999999999h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M18.2925 8.0025h1.1400000000000001v1.1400000000000001h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M17.145 20.572499999999998h2.2874999999999996v1.1475h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M17.145 16.005h1.1475v1.1400000000000001h-1.1475Z" fill="currentColor"></path>
+                <path d="M17.145 2.2874999999999996h2.2874999999999996v1.1475h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M16.005 4.574999999999999h1.1400000000000001v1.1400000000000001h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M14.857499999999998 21.72h2.2874999999999996v1.1400000000000001h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M14.857499999999998 1.1475h2.2874999999999996v1.1400000000000001h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="m14.857499999999998 14.857499999999998 -1.1400000000000001 0 0 1.1475 -1.1400000000000001 0 0 1.1400000000000001 1.1400000000000001 0 0 1.1400000000000001 1.1400000000000001 0 0 -1.1400000000000001 1.1475 0 0 -1.1400000000000001 -1.1475 0 0 -1.1475z" fill="currentColor"></path>
+                <path d="M9.149999999999999 22.86h5.7075000000000005V24H9.149999999999999Z" fill="currentColor"></path>
+                <path d="M10.290000000000001 14.857499999999998h1.1400000000000001v1.1475h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="m10.290000000000001 13.7175 1.1400000000000001 0 0 1.1400000000000001 1.1475 0 0 -1.1400000000000001 1.1400000000000001 0 0 -1.1400000000000001 1.1400000000000001 0 0 -1.1475 1.1475 0 0 -1.1400000000000001 1.1400000000000001 0 0 -1.1475 -1.1400000000000001 0 0 -1.1400000000000001 -1.1475 0 0 -1.1400000000000001 -1.1400000000000001 0 0 1.1400000000000001 -1.1400000000000001 0 0 1.1400000000000001 -1.1475 0 0 1.1475 -1.1400000000000001 0 0 1.1400000000000001 -1.1400000000000001 0 0 1.1475 1.1400000000000001 0 0 1.1400000000000001z" fill="currentColor"></path>
+                <path d="m11.43 2.2874999999999996 -1.1400000000000001 0 0 1.1475 -1.1400000000000001 0 0 1.1400000000000001 1.1400000000000001 0 0 1.1400000000000001 1.1400000000000001 0 0 -1.1400000000000001 1.1475 0 0 -1.1400000000000001 -1.1475 0 0 -1.1475z" fill="currentColor"></path>
+                <path d="M9.149999999999999 0h5.7075000000000005v1.1475H9.149999999999999Z" fill="currentColor"></path>
+                <path d="M9.149999999999999 16.005h1.1400000000000001v1.1400000000000001H9.149999999999999Z" fill="currentColor"></path>
+                <path d="M6.862500000000001 21.72h2.2874999999999996v1.1400000000000001H6.862500000000001Z" fill="currentColor"></path>
+                <path d="M8.0025 17.145h1.1475v1.1400000000000001h-1.1475Z" fill="currentColor"></path>
+                <path d="M8.0025 12.5775h1.1475v1.1400000000000001h-1.1475Z" fill="currentColor"></path>
+                <path d="M8.0025 6.862500000000001h1.1475v1.1400000000000001h-1.1475Z" fill="currentColor"></path>
+                <path d="M6.862500000000001 1.1475h2.2874999999999996v1.1400000000000001H6.862500000000001Z" fill="currentColor"></path>
+                <path d="M6.862500000000001 18.285h1.1400000000000001v1.1475H6.862500000000001Z" fill="currentColor"></path>
+                <path d="M6.862500000000001 13.7175h1.1400000000000001v1.1400000000000001H6.862500000000001Z" fill="currentColor"></path>
+                <path d="m5.715 19.4325 0 1.1400000000000001 -1.1400000000000001 0 0 1.1475 2.2874999999999996 0 0 -2.2874999999999996 -1.1475 0z" fill="currentColor"></path>
+                <path d="M5.715 14.857499999999998h1.1475v1.1475H5.715Z" fill="currentColor"></path>
+                <path d="M4.574999999999999 2.2874999999999996h2.2874999999999996v1.1475H4.574999999999999Z" fill="currentColor"></path>
+                <path d="M4.574999999999999 16.005h1.1400000000000001v1.1400000000000001H4.574999999999999Z" fill="currentColor"></path>
+                <path d="m5.715 6.862500000000001 -1.1400000000000001 0 0 1.1400000000000001 -1.1400000000000001 0 0 1.1400000000000001 1.1400000000000001 0 0 1.1475 1.1400000000000001 0 0 -1.1475 1.1475 0 0 -1.1400000000000001 -1.1475 0 0 -1.1400000000000001z" fill="currentColor"></path>
+                <path d="M3.435 19.4325H4.574999999999999v1.1400000000000001H3.435Z" fill="currentColor"></path>
+                <path d="m4.574999999999999 18.285 0 -1.1400000000000001 -2.2874999999999996 0 0 2.2874999999999996 1.1475 0 0 -1.1475 1.1400000000000001 0z" fill="currentColor"></path>
+                <path d="M3.435 3.435H4.574999999999999V4.574999999999999H3.435Z" fill="currentColor"></path>
+                <path d="M2.2874999999999996 4.574999999999999h1.1475v2.2874999999999996H2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M1.1475 14.857499999999998h1.1400000000000001v2.2874999999999996H1.1475Z" fill="currentColor"></path>
+                <path d="M1.1475 6.862500000000001h1.1400000000000001v2.2800000000000002H1.1475Z" fill="currentColor"></path>
+                <path d="M0 9.1425h1.1475v5.715H0Z" fill="currentColor"></path>
+            </g>
+        </symbol>
+
+        <!-- Static Image Generation Icon -->
+        <symbol id="icon-image-generation" viewBox="0 0 24 24">
+            <g>
+                <path d="M22.86 19.4325H24v3.4275h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M22.86 10.290000000000001H24v3.4275h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M22.86 1.1475H24V4.574999999999999h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M21.7125 13.7175h1.1475v1.1400000000000001h-1.1475Z" fill="currentColor"></path>
+                <path d="M21.7125 9.1425h1.1475v1.1475h-1.1475Z" fill="currentColor"></path>
+                <path d="M19.4325 0h3.4275v1.1475h-3.4275Z" fill="currentColor"></path>
+                <path d="M19.4325 22.86h3.4275V24h-3.4275Z" fill="currentColor"></path>
+                <path d="M20.572499999999998 14.857499999999998h1.1400000000000001v1.1475h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M20.572499999999998 8.0025h1.1400000000000001v1.1400000000000001h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M18.285 16.005h2.2874999999999996v1.1400000000000001h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M18.285 6.862500000000001h2.2874999999999996v1.1400000000000001h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M16.005 17.145h2.2800000000000002v1.1400000000000001h-2.2800000000000002Z" fill="currentColor"></path>
+                <path d="M16.005 5.715h2.2800000000000002v1.1475h-2.2800000000000002Z" fill="currentColor"></path>
+                <path d="M16.005 9.1425h-1.1475v-1.1400000000000001h-1.1400000000000001V6.862500000000001h-3.4275v1.1400000000000001h-1.1475v1.1400000000000001h-1.1400000000000001v1.1475H6.862500000000001v3.4275h1.1400000000000001v1.1400000000000001h1.1400000000000001v1.1475h1.1475v1.1400000000000001h3.4275v-1.1400000000000001h1.1400000000000001v-1.1475h1.1475v-1.1400000000000001h1.1400000000000001v-3.4275h-1.1400000000000001Zm-2.2874999999999996 3.435h-1.1475v1.1400000000000001h-1.1400000000000001v-1.1400000000000001h-1.1400000000000001v-1.1475h1.1400000000000001v-1.1400000000000001h1.1400000000000001v1.1400000000000001h1.1475Z" fill="currentColor"></path>
+                <path d="M8.0025 18.285h8.0025v1.1475H8.0025Z" fill="currentColor"></path>
+                <path d="M8.0025 4.574999999999999h8.0025v1.1400000000000001H8.0025Z" fill="currentColor"></path>
+                <path d="M5.715 17.145h2.2874999999999996v1.1400000000000001H5.715Z" fill="currentColor"></path>
+                <path d="M5.715 5.715h2.2874999999999996v1.1475H5.715Z" fill="currentColor"></path>
+                <path d="M3.4275 16.005h2.2874999999999996v1.1400000000000001H3.4275Z" fill="currentColor"></path>
+                <path d="M3.4275 6.862500000000001h2.2874999999999996v1.1400000000000001H3.4275Z" fill="currentColor"></path>
+                <path d="M1.1475 22.86H4.574999999999999V24H1.1475Z" fill="currentColor"></path>
+                <path d="M2.2874999999999996 14.857499999999998h1.1400000000000001v1.1475H2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M2.2874999999999996 8.0025h1.1400000000000001v1.1400000000000001H2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M1.1475 0H4.574999999999999v1.1475H1.1475Z" fill="currentColor"></path>
+                <path d="M1.1475 13.7175h1.1400000000000001v1.1400000000000001H1.1475Z" fill="currentColor"></path>
+                <path d="M1.1475 9.1425h1.1400000000000001v1.1475H1.1475Z" fill="currentColor"></path>
+                <path d="M0 19.4325h1.1475v3.4275H0Z" fill="currentColor"></path>
+                <path d="M0 10.290000000000001h1.1475v3.4275H0Z" fill="currentColor"></path>
+                <path d="M0 1.1475h1.1475V4.574999999999999H0Z" fill="currentColor"></path>
+            </g>
+        </symbol>
+
+        <!-- Video Generation Icon -->
+        <symbol id="icon-video-generation" viewBox="0 0 24 24">
+            <g>
+                <path d="M18.855 0v1.1400000000000001h2.2874999999999996v1.1475h1.1400000000000001v1.1400000000000001h-2.2800000000000002V2.2874999999999996h-1.1475V1.1400000000000001h-4.5675v1.1475h2.2800000000000002v1.1400000000000001h1.1475v1.1400000000000001h-2.2874999999999996V3.4275h-1.1400000000000001V2.2874999999999996h-4.574999999999999v1.1400000000000001H12v1.1400000000000001h1.1400000000000001v1.1475h-2.2800000000000002V4.5675h-1.1475V3.4275H5.1450000000000005v1.1400000000000001H7.425000000000001v1.1475h1.1475v1.1400000000000001H6.285V5.715H5.1450000000000005V4.5675H0.5700000000000001v18.285h1.1475V14.857499999999998h20.565v7.995h1.1475V10.2825H1.7175v-1.1400000000000001h3.4275v-1.1475h4.5675V6.855h4.574999999999999V5.715h4.5675V4.5675h4.574999999999999V0Zm0 12.57h1.1475v-1.1400000000000001h2.2800000000000002v1.1400000000000001h-1.1400000000000001v1.1400000000000001h-2.2874999999999996Zm-5.715 0h1.1475v-1.1400000000000001h2.2800000000000002v1.1400000000000001h-1.1400000000000001v1.1400000000000001h-2.2874999999999996Zm-5.715 0h1.1475v-1.1400000000000001h2.2874999999999996v1.1400000000000001h-1.1475v1.1400000000000001H7.425000000000001Zm-4.5675 0v-1.1400000000000001h2.2874999999999996v1.1400000000000001H3.9975v1.1400000000000001H1.7175v-1.1400000000000001Zm1.1400000000000001 -4.574999999999999H1.7175V5.715h1.1400000000000001v1.1400000000000001h1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M1.7175 22.8525h20.565V24H1.7175Z" fill="currentColor"></path>
+                <path d="m20.0025 17.145 -1.1475 0 0 1.1400000000000001 -1.1400000000000001 0 0 -1.1400000000000001 -1.1475 0 0 1.1400000000000001 -1.1400000000000001 0 0 1.1400000000000001 1.1400000000000001 0 0 1.1475 1.1475 0 0 1.1400000000000001 1.1400000000000001 0 0 -1.1400000000000001 1.1475 0 0 -1.1475 1.1400000000000001 0 0 -1.1400000000000001 -1.1400000000000001 0 0 -1.1400000000000001z" fill="currentColor"></path>
+                <path d="M5.1450000000000005 19.424999999999997h7.995v1.1475H5.1450000000000005Z" fill="currentColor"></path>
+                <path d="M5.1450000000000005 17.145h7.995v1.1400000000000001H5.1450000000000005Z" fill="currentColor"></path>
+            </g>
+        </symbol>
+
+        <!-- Image Set Generation Icon -->
+        <symbol id="icon-image-set" viewBox="0 0 24 24">
+            <g>
+                <path d="M22.29 2.8575h1.1400000000000001v19.4325h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M2.8575 22.29h19.4325v1.1400000000000001H2.8575Z" fill="currentColor"></path>
+                <path d="M20.0025 1.7175h1.1400000000000001v18.285h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="m17.715 10.86 -2.2874999999999996 0 0 1.1400000000000001 2.2874999999999996 0 0 3.4275 1.1475 0 0 -11.4225 -1.1475 0 0 6.855z" fill="currentColor"></path>
+                <path d="m15.4275 14.287500000000001 -1.1400000000000001 0 0 1.1400000000000001 -10.2825 0 0 1.1475 13.71 0 0 -1.1475 -2.2874999999999996 0 0 -1.1400000000000001z" fill="currentColor"></path>
+                <path d="M14.287500000000001 12h1.1400000000000001v1.1475h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M13.1475 13.1475h1.1400000000000001v1.1400000000000001h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="m13.1475 9.712499999999999 2.2800000000000002 0 0 -1.1400000000000001 1.1475 0 0 -2.2874999999999996 -1.1475 0 0 -1.1400000000000001 -2.2800000000000002 0 0 1.1400000000000001 -1.1475 0 0 2.2874999999999996 1.1475 0 0 1.1400000000000001z" fill="currentColor"></path>
+                <path d="M12 12h1.1475v1.1475H12Z" fill="currentColor"></path>
+                <path d="M10.86 10.86H12V12h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M9.72 9.712499999999999h1.1400000000000001v1.1475h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M7.4325 8.5725h2.2874999999999996v1.1400000000000001H7.4325Z" fill="currentColor"></path>
+                <path d="M6.285 9.712499999999999h1.1475v1.1475H6.285Z" fill="currentColor"></path>
+                <path d="M5.1450000000000005 10.86h1.1400000000000001V12H5.1450000000000005Z" fill="currentColor"></path>
+                <path d="M4.005 2.8575h13.71v1.1475H4.005Z" fill="currentColor"></path>
+                <path d="m4.005 13.1475 1.1400000000000001 0 0 -1.1475 -1.1400000000000001 0 0 -7.995 -1.1475 0 0 11.4225 1.1475 0 0 -2.2800000000000002z" fill="currentColor"></path>
+                <path d="M1.7175 0.5700000000000001h18.285v1.1475H1.7175Z" fill="currentColor"></path>
+                <path d="M1.7175 20.0025h18.285v1.1400000000000001H1.7175Z" fill="currentColor"></path>
+                <path d="M0.5700000000000001 1.7175h1.1475v18.285H0.5700000000000001Z" fill="currentColor"></path>
+            </g>
+        </symbol>
+
+        <!-- AI Agents Icon -->
+        <symbol id="icon-ai-agents" viewBox="0 0 24 24">
+            <g>
+                <path d="M22.8525 13.7175H24v2.2800000000000002h-1.1475Z" fill="currentColor"></path>
+                <path d="m12.57 15.997499999999999 0 1.1475 4.5675 0 0 3.4275 1.1475 0 0 -3.4275 4.5675 0 0 -1.1475 -10.2825 0z" fill="currentColor"></path>
+                <path d="M7.995 9.1425h9.1425v1.1400000000000001H7.995Z" fill="currentColor"></path>
+                <path d="m11.4225 20.572499999999998 0 2.2874999999999996 1.1475 0 0 -1.1475 4.5675 0 0 -1.1400000000000001 -5.715 0z" fill="currentColor"></path>
+                <path d="m22.8525 13.7175 0 -1.1475 -4.5675 0 0 -2.2874999999999996 -1.1475 0 0 2.2874999999999996 -4.5675 0 0 1.1475 10.2825 0z" fill="currentColor"></path>
+                <path d="M11.4225 13.7175h1.1475v2.2800000000000002h-1.1475Z" fill="currentColor"></path>
+                <path d="M11.4225 1.1400000000000001h1.1475v2.2874999999999996h-1.1475Z" fill="currentColor"></path>
+                <path d="M1.1400000000000001 22.86h10.2825V24H1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M6.855 8.0025h1.1400000000000001v1.1400000000000001H6.855Z" fill="currentColor"></path>
+                <path d="m6.855 4.5675 4.5675 0 0 -1.1400000000000001 -10.2825 0 0 1.1400000000000001 4.5675 0 0 3.435 1.1475 0 0 -3.435z" fill="currentColor"></path>
+                <path d="M1.1400000000000001 19.424999999999997h10.2825v1.1475H1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M1.1400000000000001 0h10.2825v1.1400000000000001H1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M0 20.572499999999998h1.1400000000000001v2.2874999999999996H0Z" fill="currentColor"></path>
+                <path d="M0 1.1400000000000001h1.1400000000000001v2.2874999999999996H0Z" fill="currentColor"></path>
+            </g>
+        </symbol>
+
+        <!-- Telegram Query Icon -->
+        <symbol id="icon-telegram-query" viewBox="0 0 24 24">
+            <g>
+                <path d="M19.424999999999997 8.5725H24v1.1400000000000001h-4.574999999999999Z" fill="currentColor"></path>
+                <path d="M21.7125 10.86H24V12h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="m6.855 16.575000000000003 5.715 0 0 1.1400000000000001 5.715 0 0 -2.2874999999999996 3.4275 0 0 -2.2800000000000002 -1.1400000000000001 0 0 1.1400000000000001 -19.4325 0 0 -1.1400000000000001 -1.1400000000000001 0 0 2.2800000000000002 6.855 0 0 1.1475z" fill="currentColor"></path>
+                <path d="M18.285 12h2.2874999999999996v1.1475h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M17.137500000000003 6.285h2.2874999999999996v1.1475h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M15.997499999999999 10.86h2.2874999999999996V12h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="m13.71 9.712499999999999 -1.1400000000000001 0 0 1.1475 3.4275 0 0 -1.1475 -1.1400000000000001 0 0 -1.1400000000000001 -1.1475 0 0 1.1400000000000001z" fill="currentColor"></path>
+                <path d="m14.857499999999998 8.5725 1.1400000000000001 0 0 -2.2874999999999996 -3.4275 0 0 1.1475 2.2874999999999996 0 0 1.1400000000000001z" fill="currentColor"></path>
+                <path d="M10.2825 7.4325h2.2874999999999996v1.1400000000000001h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M9.1425 10.86h3.4275V12h-3.4275Z" fill="currentColor"></path>
+                <path d="M7.995 8.5725h2.2874999999999996v1.1400000000000001h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M5.715 9.712499999999999h2.2800000000000002v1.1475H5.715Z" fill="currentColor"></path>
+                <path d="M3.4275 10.86h2.2874999999999996V12H3.4275Z" fill="currentColor"></path>
+                <path d="M1.1400000000000001 12h2.2874999999999996v1.1475H1.1400000000000001Z" fill="currentColor"></path>
+            </g>
+        </symbol>
+
+        <!-- AI Agent Bot Icon -->
+        <symbol id="icon-ai-agent-bot" viewBox="0 0 24 24">
+            <g>
+                <path d="m22.8525 13.71 0 -7.995 -1.1400000000000001 0 0 6.855 -1.1400000000000001 0 0 -1.1400000000000001 -1.1475 0 0 9.1425 1.1475 0 0 -1.1475 2.2800000000000002 0 0 -1.1400000000000001 1.1475 0 0 -4.574999999999999 -1.1475 0z" fill="currentColor"></path>
+                <path d="M18.285 9.1425h1.1400000000000001v2.2874999999999996h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="m4.5675 20.572499999999998 0 1.1400000000000001 1.1475 0 0 1.1475 1.1400000000000001 0 0 -1.1475 10.2825 0 0 1.1475 1.1475 0 0 -1.1475 1.1400000000000001 0 0 -1.1400000000000001 -14.857499999999998 0z" fill="currentColor"></path>
+                <path d="M17.137500000000003 13.71h1.1475v2.2874999999999996h-1.1475Z" fill="currentColor"></path>
+                <path d="M17.137500000000003 8.0025h1.1475v1.1400000000000001h-1.1475Z" fill="currentColor"></path>
+                <path d="M14.857499999999998 12.57h2.2800000000000002v1.1400000000000001h-2.2800000000000002Z" fill="currentColor"></path>
+                <path d="M6.855 22.86h10.2825V24H6.855Z" fill="currentColor"></path>
+                <path d="M14.857499999999998 15.997499999999999h2.2800000000000002v1.1475h-2.2800000000000002Z" fill="currentColor"></path>
+                <path d="M13.71 13.71h1.1475v2.2874999999999996h-1.1475Z" fill="currentColor"></path>
+                <path d="M13.71 1.1400000000000001h1.1475v1.1475h-1.1475Z" fill="currentColor"></path>
+                <path d="M10.2825 18.285h3.4275v1.1400000000000001h-3.4275Z" fill="currentColor"></path>
+                <path d="M10.2825 0h3.4275v1.1400000000000001h-3.4275Z" fill="currentColor"></path>
+                <path d="M9.1425 13.71h1.1400000000000001v2.2874999999999996h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M9.1425 1.1400000000000001h1.1400000000000001v1.1475h-1.1400000000000001Z" fill="currentColor"></path>
+                <path d="M6.855 12.57h2.2874999999999996v1.1400000000000001H6.855Z" fill="currentColor"></path>
+                <path d="m17.137500000000003 8.0025 0 -1.1475 -4.5675 0 0 -3.4275 1.1400000000000001 0 0 -1.1400000000000001 -3.4275 0 0 1.1400000000000001 1.1400000000000001 0 0 3.4275 -4.5675 0 0 1.1475 10.2825 0z" fill="currentColor"></path>
+                <path d="M6.855 15.997499999999999h2.2874999999999996v1.1475H6.855Z" fill="currentColor"></path>
+                <path d="M5.715 13.71h1.1400000000000001v2.2874999999999996H5.715Z" fill="currentColor"></path>
+                <path d="M5.715 8.0025h1.1400000000000001v1.1400000000000001H5.715Z" fill="currentColor"></path>
+                <path d="M4.5675 9.1425h1.1475v2.2874999999999996H4.5675Z" fill="currentColor"></path>
+                <path d="m4.5675 11.43 -1.1400000000000001 0 0 1.1400000000000001 -1.1475 0 0 -6.855 -1.1400000000000001 0 0 7.995 -1.1400000000000001 0 0 4.574999999999999 1.1400000000000001 0 0 1.1400000000000001 2.2874999999999996 0 0 1.1475 1.1400000000000001 0 0 -9.1425z" fill="currentColor"></path>
+            </g>
+        </symbol>
+
+        <!-- Meta Ads Icon -->
+        <symbol id="icon-meta-ads" viewBox="0 0 24 24">
+            <path d="m22.8525 7.428749999999999 -1.1400000000000001 0 0 -2.2874999999999996 -1.1475 0 0 -1.1400000000000001 -1.1400000000000001 0 0 -1.1475 -2.2874999999999996 0 0 -1.1400000000000001 -2.2800000000000002 0 0 -1.1400000000000001 -5.715 0 0 1.1400000000000001 -2.2874999999999996 0 0 1.1400000000000001 -2.2874999999999996 0 0 1.1475 -1.1400000000000001 0 0 1.1400000000000001 -1.1475 0 0 2.2874999999999996 -1.1400000000000001 0 0 2.2874999999999996 -1.1400000000000001 0 0 5.7075000000000005 1.1400000000000001 0 0 2.2874999999999996 1.1400000000000001 0 0 2.2874999999999996 1.1475 0 0 1.1400000000000001 1.1400000000000001 0 0 1.1475 2.2874999999999996 0 0 1.1400000000000001 3.4275 0 0 -8.0025 -3.4275 0 0 -3.4275 3.4275 0 0 -4.5675 1.1400000000000001 0 0 -1.1475 5.715 0 0 3.435 -3.4275 0 0 2.2800000000000002 4.574999999999999 0 0 1.1475 -1.1475 0 0 1.1400000000000001 -1.1400000000000001 0 0 1.1400000000000001 -2.2874999999999996 0 0 8.0025 3.4275 0 0 -1.1400000000000001 2.2874999999999996 0 0 -1.1475 1.1400000000000001 0 0 -1.1400000000000001 1.1475 0 0 -2.2874999999999996 1.1400000000000001 0 0 -2.2874999999999996 1.1475 0 0 -5.7075000000000005 -1.1475 0 0 -2.2874999999999996z" fill="currentColor"></path>
+        </symbol>
+
+        <!-- Metric Report Icon -->
+        <symbol id="icon-metric-report" viewBox="0 0 24 24">
+            <g>
+                <path d="m16.575000000000003 11.43 0 1.1400000000000001 -2.2874999999999996 0 0 1.1475 -6.855 0 0 1.1400000000000001 3.4275 0 0 1.1400000000000001 1.1400000000000001 0 0 1.1475 1.1475 0 0 1.1400000000000001 4.5675 0 0 1.1400000000000001 1.1475 0 0 1.1475 1.1400000000000001 0 0 1.1400000000000001 1.1400000000000001 0 0 -4.5675 1.1475 0 0 -1.1475 1.1400000000000001 0 0 -4.5675 -1.1400000000000001 0 0 -1.1475 -1.1475 0 0 -1.1400000000000001 -2.2800000000000002 0 0 -3.4275 -1.1475 0 0 5.715 -1.1400000000000001 0z" fill="currentColor"></path>
+                <path d="M16.575000000000003 4.5675h1.1400000000000001v1.1475H16.575000000000003Z" fill="currentColor"></path>
+                <path d="M13.1475 8.0025h2.2800000000000002v2.2800000000000002h-2.2800000000000002Z" fill="currentColor"></path>
+                <path d="M14.287500000000001 3.4275h2.2874999999999996v1.1400000000000001h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M8.5725 8.0025h2.2874999999999996v2.2800000000000002h-2.2874999999999996Z" fill="currentColor"></path>
+                <path d="M6.285 14.857499999999998h1.1475v1.1400000000000001H6.285Z" fill="currentColor"></path>
+                <path d="M5.1450000000000005 2.2874999999999996h9.1425v1.1400000000000001H5.1450000000000005Z" fill="currentColor"></path>
+                <path d="m5.1450000000000005 13.7175 -1.1400000000000001 0 0 4.5675 1.1400000000000001 0 0 -1.1400000000000001 1.1400000000000001 0 0 -1.1475 -1.1400000000000001 0 0 -2.2800000000000002z" fill="currentColor"></path>
+                <path d="M4.005 8.0025h2.2800000000000002v2.2800000000000002H4.005Z" fill="currentColor"></path>
+                <path d="M2.8575 3.4275h2.2874999999999996v1.1400000000000001H2.8575Z" fill="currentColor"></path>
+                <path d="M2.8575 12.57h1.1475v1.1475H2.8575Z" fill="currentColor"></path>
+                <path d="M1.7175 11.43h1.1400000000000001v1.1400000000000001H1.7175Z" fill="currentColor"></path>
+                <path d="M1.7175 4.5675h1.1400000000000001v1.1475H1.7175Z" fill="currentColor"></path>
+                <path d="M0.5700000000000001 5.715h1.1475v5.715H0.5700000000000001Z" fill="currentColor"></path>
+            </g>
+        </symbol>
+    </svg>
+
+    <header class="main-nav">
+        <a href="#slide-intro" class="nav-logo">Buff.Labs</a>
+        
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#slide-us">Us</a></li>
+            <li><a href="#slide-goal">Goal</a></li>
+            <li><a href="#slide-services">Services</a></li>
+            <li><a href="#slide-solutions">Solutions</a></li>
+            <li><a href="#slide-proposal">Proposal</a></li>
+            <li><a href="#slide-next-steps">Next Steps</a></li>
+            <li><a href="mailto:info@bufflabs.ai" class="btn btn-primary">Get In Touch</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <section id="slide-intro" class="slide">
+            <div class="slide-content">
+                <h1>Buff.Labs x Extra + Biletebi</h1>
+                <p class="subtitle">AI is the new creative standard</p>
+            </div>
+        </section>
+
+        <section id="slide-us" class="slide">
+            <div class="slide-content">
+                <h2>Us</h2>
+                <p>Buff.Labs is a unique one-stop shop for all your AI needs. Like flawless CGI, the best AI disappears into the work. Buff's secret sauce is the blend of creative minds, good taste and advanced AI tools, while the final product is delivered at the speed that modern marketing demands.</p>
+            </div>
+        </section>
+
+        <section id="slide-goal" class="slide">
+            <div class="slide-content">
+                <h2>Goal</h2>
+                <p>Everyone is under pressure to do more: faster, cheaper, and with fewer resources, while having FOMO on how to use AI safely and effectively. That's where Buff comes in.</p>
+                <p><strong>Our 2 main goals are to replace tedious/repetitive tasks that can be automated and apply AI for cost-cutting purposes.</strong></p>
+            </div>
+        </section>
+
+        <section id="slide-services" class="slide">
+            <div class="slide-content">
+                <h2>Services</h2>
+                <div class="definition-list">
+                    <div class="definition-item">
+                        <div class="item-title-strong">Visual AI Solutions</div>
+                        <p>SM Content Generation + Automation, Product Visuals, Trained Image Models, Visual Assets Generation in bulk, Image Upscaling.</p>
+                    </div>
+                    <div class="definition-item">
+                        <div class="item-title-strong">Video Production</div>
+                        <p>Teasers, Commercials, Animations, Voiceover, Audio Solutions.</p>
+                    </div>
+                    <div class="definition-item">
+                        <div class="item-title-strong">Custom Solutions</div>
+                        <p>Custom AI Agents, Automations, Chatbots, Website + App Builders.</p>
+                    </div>
+                    <div class="definition-item">
+                        <div class="item-title-strong">Avatars and Voice Cloning</div>
+                        <p>Creating relatable, unique and consistent characters.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="slide-solutions" class="slide">
+            <div class="slide-content">
+                <h2>Solutions</h2>
+                <div class="solution-item">
+                    <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#icon-content-generation"></use>
+                    </svg>
+                    <div>
+                        <h3>Content Generation Engine</h3>
+                        <p>Creating a specialized bot with the knowledge of how to generate content (in this case, text only) tailored to your brand voice.</p>
+                        
+                        <div class="bots-container">
+                            <div class="chatbot-demo">
+                                <div class="chatbot-header">
+                                    <h4>Content Generation Bot</h4>
+                                    <span class="chatbot-status" id="contentBotStatus">● Connected</span>
+                                </div>
+                                <div class="chatbot-messages" id="contentChatMessages">
+                                    <div class="message bot-message">
+                                        <div class="message-content">
+                                            გამარჯობა! მე ვარ Extra + Biletebi-ს კონტენტ გენერირების ბოტი. დამეხმარებით ქართულ ენაზე შევქმნა კონტენტი Extra.ge და Biletebi.ge-ს შესახებ.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chatbot-input">
+                                    <input type="text" id="contentChatInput" placeholder="დასვით კითხვა კონტენტის შესახებ...">
+                                    <button id="contentSendButton">გაგზავნა</button>
+                                </div>
+                            </div>
+
+                            <div class="chatbot-demo">
+                                <div class="chatbot-header">
+                                    <h4>Image Generation Bot</h4>
+                                    <span class="chatbot-status" id="imageBotStatus">● Connected</span>
+                                </div>
+                                <div class="chatbot-messages" id="imageChatMessages">
+                                    <div class="message bot-message">
+                                        <div class="message-content">
+                                            გამარჯობა! მე ვარ სურათების გენერირების ბოტი. აღწერეთ როგორი სურათი გსურთ Extra + Biletebi-სთვის და მე შევქმნი მას.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chatbot-input">
+                                    <input type="text" id="imageChatInput" placeholder="აღწერეთ სურათი რომლის შექმნაც გსურთ...">
+                                    <button id="imageSendButton">შექმნა</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="solution-item">
+                    <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#icon-image-generation"></use>
+                    </svg>
+                    <div>
+                        <h3>Photo Generation (Static Images)</h3>
+                        <p>We can develop two methods: create reference HTML templates for new brand visuals, and use photo models to create variations of existing visuals.</p>
+                        <a href="https://www.behance.net/gallery/202855379/John-Kvezerelis-Portfolio#" target="_blank" class="example-link">[ View Example ]</a>
+                        
+                        <div class="masonry-gallery">
+                            <div class="masonry-item">
+                                <img src="assets/photogeneration_Staticimage/KFC-14.02-3.jpg" alt="AI Generated KFC Campaign Image" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/photogeneration_Staticimage/black-lion-lighter-visual-(NEW)-Camera.jpg" alt="AI Generated Black Lion Product Visual" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/photogeneration_Staticimage/KFC-06.03-2.png" alt="AI Generated KFC Product Photography" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/photogeneration_Staticimage/KFC 18.03.2024 2.png" alt="AI Generated KFC Marketing Visual" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/photogeneration_Staticimage/black-lion-sup-board-final.png" alt="AI Generated Black Lion SUP Board Visual" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/photogeneration_Staticimage/KFC-18.023453.png" alt="AI Generated KFC Campaign Visual" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/photogeneration_Staticimage/ახალი-ბოთლით-close-ups-05.06.png" alt="AI Generated Product Close-up Visual" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/photogeneration_Staticimage/ახალი-ბოთლით-plants-Camera.png" alt="AI Generated Product with Plants Visual" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="solution-item">
+                    <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#icon-video-generation"></use>
+                    </svg>
+                    <div>
+                        <h3>Video Generation</h3>
+                        <p>We can use AI for video generation of a teaser, animation or any kind of action. We can also utilize AI Influencers and talking heads to create a custom avatar, mostly for TikTok/Reels. <span class="text-muted">All custom text and motion graphics will be handled manually.</span></p>
+                        <a href="https://www.facebook.com/share/v/1EBerExxws/" target="_blank" class="example-link">[ View Campaign Example ]</a>
+                        
+                        <div class="video-showcase">
+                            <div class="video-item">
+                                <h4>Aldagi Commercial</h4>
+                                <video controls preload="metadata" class="showcase-video">
+                                    <source src="assets/videoGeneration/Aldagi Ice Scene Final 1920x1080.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <p class="video-description">AI-generated commercial for Aldagi featuring dynamic ice scenes with professional cinematic quality.</p>
+                            </div>
+                            
+                            <div class="video-item">
+                                <h4>AI Talking Head Avatar</h4>
+                                <video controls preload="metadata" class="showcase-video">
+                                    <source src="assets/videoGeneration/talking head example with recorded voice.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <p class="video-description">Custom AI avatar with voice generation for engaging social media content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="solution-item">
+                    <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#icon-image-set"></use>
+                    </svg>
+                    <div>
+                        <h3>Photoset Generation</h3>
+                        <p>2 options: train a model to replicate a specific company's photo style (graphics added manually), or create a 'Master Prompt' database to generate desired images from scratch without training.</p>
+                        
+                        <div class="masonry-gallery">
+                            <div class="masonry-item">
+                                <img src="assets/imagesets/a_georgian_girl_wi_image.jpg" alt="AI Generated Georgian Girl Portrait" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/imagesets/brand_new_iphone_i_image.jpg" alt="AI Generated iPhone Product Image" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/imagesets/crafts_and_arts_it_image.jpg" alt="AI Generated Crafts and Arts Scene" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/imagesets/delivery_boxes_on_image.jpg" alt="AI Generated Delivery Boxes Scene" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/imagesets/a_two_hands_holdin_image.jpg" alt="AI Generated Hands Holding Scene" loading="lazy">
+                            </div>
+                            <div class="masonry-item">
+                                <img src="assets/imagesets/a_realistic_image_image(1).jpg" alt="AI Generated Realistic Scene" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="solution-item">
+                    <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <use href="#icon-ai-agents"></use>
+                    </svg>
+                    <div>
+                        <h3>AI Agents</h3>
+                        <p>Key Meta Ads metrics report through a chatbot.</p>
+                        
+                        <div class="ai-agent-demo">
+                            <div class="agent-overview">
+                                <div class="agent-card">
+                                    <div class="agent-header">
+                                        <h3>Meta Ads Analytics Bot</h3>
+                                        <div class="agent-status">
+                                            <div class="status-dot"></div>
+                                            <span>Active</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="workflow-steps">
+                                        <div class="step-item">
+                                            <div class="step-icon">
+                                                <svg class="step-svg" viewBox="0 0 24 24">
+                                                    <use href="#icon-telegram-query"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="step-content">
+                                                <h4>Query</h4>
+                                                <p>User asks via Telegram</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flow-line"></div>
+                                        
+                                        <div class="step-item">
+                                            <div class="step-icon">
+                                                <svg class="step-svg" viewBox="0 0 24 24">
+                                                    <use href="#icon-ai-agent-bot"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="step-content">
+                                                <h4>Process</h4>
+                                                <p>AI agent analyzes request</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flow-line"></div>
+                                        
+                                        <div class="step-item">
+                                            <div class="step-icon">
+                                                <svg class="step-svg" viewBox="0 0 24 24">
+                                                    <use href="#icon-meta-ads"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="step-content">
+                                                <h4>Fetch</h4>
+                                                <p>Retrieves Meta Ads data</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flow-line"></div>
+                                        
+                                        <div class="step-item">
+                                            <div class="step-icon">
+                                                <svg class="step-svg" viewBox="0 0 24 24">
+                                                    <use href="#icon-metric-report"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="step-content">
+                                                <h4>Report</h4>
+                                                <p>Delivers formatted results</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="telegram-demo-container">
+                                    <div class="demo-label">Live Demo</div>
+                                    <div class="telegram-demo">
+                                        <div class="telegram-header">
+                                            <div class="header-left">
+                                                <svg class="telegram-logo" viewBox="0 0 24 24">
+                                                    <path d="M12 0C5.374 0 0 5.373 0 12s5.374 12 12 12 12-5.373 12-12S18.626 0 12 0zm5.568 8.16l-1.61 7.59c-.12.54-.44.67-.89.42l-2.46-1.82-1.19 1.14c-.13.13-.24.24-.49.24l.17-2.43 4.47-4.03c.19-.17-.04-.27-.3-.1L9.28 13.5l-2.38-.75c-.52-.16-.53-.52.11-.77l9.28-3.58c.43-.16.81.1.67.76z" fill="#0088cc"/>
+                                                </svg>
+                                                <div class="chat-info">
+                                                    <div class="chat-name">Meta Ads AI</div>
+                                                    <div class="chat-status">online</div>
+                                                </div>
+                                            </div>
+                                            <div class="header-right">
+                                                <span class="more-icon">⋯</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="telegram-messages">
+                                            <div class="message-date">Today</div>
+                                            
+                                            <div class="message incoming">
+                                                <div class="message-avatar">NR</div>
+                                                <div class="message-content">
+                                                    <div class="message-author">Nini Rukhadze</div>
+                                                    <div class="message-text">What was the best ad and the best adset from the last 7 days?</div>
+                                                    <div class="message-time">15:25</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="message outgoing">
+                                                <div class="message-content">
+                                                    <div class="message-text">
+                                                        <strong>📊 Last 7 Days Report</strong><br><br>
+                                                        <strong>🏆 Best Ad:</strong><br>
+                                                        • AD 34 - Swipe File 3 - PV011<br>
+                                                        • Spend: $115.32 | Purchases: 1<br><br>
+                                                        <strong>📈 Best Adset:</strong><br>
+                                                        • Advantage+ - 03.02.2025<br>
+                                                        • Spend: $359.72 | Purchases: 2
+                                                    </div>
+                                                    <div class="message-time">15:25 ✓✓</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="telegram-input-area">
+                                            <div class="input-container">
+                                                <span class="attach-icon">📎</span>
+                                                <input type="text" placeholder="Message" disabled>
+                                                <span class="send-icon">🎤</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="slide-proposal" class="slide">
+            <div class="slide-content">
+                <h2>Monthly Bundle For Extra + Biletebi</h2>
+                <div>
+                    <div class="price">10,000</div>
+                    <p class="price-term">GEL / Month (w/o VAT)</p>
+                </div>
+                <div class="definition-list">
+                    <div class="definition-item">
+                        <div class="item-title-strong">Content Plan + Content Planning Bot</div>
+                        <p>Strategic content planning with AI-powered automation and scheduling.</p>
+                    </div>
+                    <div class="definition-item">
+                        <div class="item-title-strong">Image generation in bulk for SM</div>
+                        <p>Replacing shutterstock with custom AI-generated social media visuals.</p>
+                    </div>
+                     <div class="definition-item">
+                        <div class="item-title-strong">Massive update for web content, all categories</div>
+                        <p>Replacing photoshoots with AI-generated product and category images.</p>
+                    </div>
+                    <div class="definition-item">
+                        <div class="item-title-strong">Visual Model training specifically for Extra + Biletebi</div>
+                        <p>Custom AI model trained on your brand's visual style and guidelines.</p>
+                    </div>
+                    <div class="definition-item">
+                        <div class="item-title-strong">AI Agents</div>
+                        <p>Working together with Extra + Biletebi to identify what can be automated.</p>
+                    </div>
+                    <div class="definition-item">
+                        <div class="item-title-strong">UGC - AI Avatars/Talking Heads</div>
+                        <p>Avatar + voice generation/cloning for user-generated content campaigns.</p>
+                    </div>
+                </div>
+                <div class="proposal-cta">
+                     <a href="#" class="btn btn-secondary">View Detailed Breakdown</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="slide-next-steps" class="slide">
+            <div class="slide-content">
+                <h2>Next Steps</h2>
+                <ol>
+                    <li>
+                        <div>
+                            <strong>Discovery Call</strong>
+                            <p>Schedule a follow-up to discuss your goals and refine the project scope.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>Onboarding</strong>
+                            <p>Formalize the agreement and begin knowledge transfer and asset collection.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>Initiate Build</strong>
+                            <p>Our team will begin developing the custom bots and training the AI models.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>Launch & Optimize</strong>
+                            <p>Deploy initial solutions and begin our monthly cycle of creation and optimization.</p>
+                        </div>
+                    </li>
+                </ol>
+                <p class="closing-text">Thank you for your consideration.</p>
+            </div>
+        </section>
+        
+        <section id="closing-image" class="slide"></section>
+        
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2025 Buff.Labs</p>
+            <div class="footer-links">
+                <a href="mailto:info@bufflabs.ai">info@bufflabs.ai</a>
+                <div class="footer-divider"></div>
+                <a href="https://www.bufflabs.ai" target="_blank">www.bufflabs.ai</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Content Generation Bot with Gemini API integration
+        class ContentGenerationBot {
+            constructor() {
+                this.apiKey = 'AIzaSyD1FH0PO2AMV22OVuGlzfuewObiY_QugXg';
+                this.chatMessages = document.getElementById('contentChatMessages');
+                this.chatInput = document.getElementById('contentChatInput');
+                this.sendButton = document.getElementById('contentSendButton');
+                
+                this.masterPrompt = `You are an AI content generation bot specifically designed for Extra.ge and Biletebi.ge, two major Georgian e-commerce platforms. You must ALWAYS respond in Georgian language (ქართული ენა) and only provide information related to Extra.ge and Biletebi.ge.
+
+Key information about Extra.ge:
+- Extra.ge is a leading Georgian e-commerce marketplace platform
+- It offers a wide variety of products including electronics, fashion, home goods, beauty products, and more
+- The platform serves customers throughout Georgia with fast delivery
+- Extra.ge focuses on competitive prices and quality products
+- User-friendly interface and mobile app available
+- Supports both Georgian and English languages
+- Regular promotional campaigns, discounts, and seasonal sales
+- Wide network of local and international brands
+
+Key information about Biletebi.ge:
+- Biletebi.ge is Georgia's leading ticketing platform
+- Specializes in event tickets, concerts, theater shows, sports events
+- Covers entertainment events across Georgia
+- Easy online booking and mobile ticketing
+- Partnership with major venues and event organizers
+- Secure payment system and digital ticket delivery
+- Customer support in Georgian language
+
+STRICT RULES:
+1. ALWAYS respond in Georgian language only (ქართული ენა)
+2. ONLY discuss topics related to Extra.ge and/or Biletebi.ge
+3. If asked about other topics, politely redirect to Extra.ge or Biletebi.ge content
+4. Keep responses helpful, professional, and brand-focused
+5. Generate engaging content suitable for social media, blogs, email campaigns, or marketing materials
+6. Focus on benefits, features, and unique selling propositions of both platforms
+7. Create content that drives engagement and conversions
+
+Current task: Generate helpful, engaging content about Extra.ge and Biletebi.ge in Georgian language.`;
+
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                this.sendButton.addEventListener('click', () => this.sendMessage());
+                this.chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+            }
+
+            async sendMessage() {
+                const message = this.chatInput.value.trim();
+                if (!message) return;
+
+                // Add user message
+                this.addMessage(message, 'user');
+                this.chatInput.value = '';
+
+                // Show loading
+                const loadingMessage = this.addMessage('პასუხს ვამზადებ...', 'bot');
+                
+                try {
+                    const response = await this.callGeminiAPI(message);
+                    this.removeMessage(loadingMessage);
+                    this.addMessage(response, 'bot');
+                } catch (error) {
+                    this.removeMessage(loadingMessage);
+                    this.addMessage('ვერ მოხერხდა პასუხის მიღება. გთხოვთ სცადოთ თავიდან.', 'bot');
+                    console.error('API Error:', error);
+                }
+            }
+
+            async callGeminiAPI(userMessage) {
+                const fullPrompt = `${this.masterPrompt}\n\nUser: ${userMessage}\n\nBot:`;
+                
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${this.apiKey}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            contents: [{
+                                parts: [{
+                                    text: fullPrompt
+                                }]
+                            }],
+                            generationConfig: {
+                                temperature: 0.7,
+                                topK: 40,
+                                topP: 0.95,
+                                maxOutputTokens: 500,
+                            }
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API Error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    
+                    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                        return data.candidates[0].content.parts[0].text;
+                    } else {
+                        throw new Error('No response from API');
+                    }
+                } catch (error) {
+                    throw error;
+                }
+            }
+
+            addMessage(content, type) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${type}-message`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                contentDiv.textContent = content;
+                
+                messageDiv.appendChild(contentDiv);
+                this.chatMessages.appendChild(messageDiv);
+                
+                // Scroll to bottom
+                this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+                
+                return messageDiv;
+            }
+
+            removeMessage(messageElement) {
+                if (messageElement && messageElement.parentNode) {
+                    messageElement.parentNode.removeChild(messageElement);
+                }
+            }
+        }
+
+        // Image Generation Demo Bot
+        class ImageGenerationBot {
+            constructor() {
+                this.chatMessages = document.getElementById('imageChatMessages');
+                this.chatInput = document.getElementById('imageChatInput');
+                this.sendButton = document.getElementById('imageSendButton');
+                
+                this.demoImages = [
+                    'assets/imagesets/a_georgian_girl_wi_image.jpg',
+                    'assets/imagesets/brand_new_iphone_i_image.jpg',
+                    'assets/imagesets/crafts_and_arts_it_image.jpg',
+                    'assets/imagesets/delivery_boxes_on_image.jpg',
+                    'assets/imagesets/a_two_hands_holdin_image.jpg',
+                    'assets/imagesets/a_realistic_image_image(1).jpg',
+                    'assets/photogeneration_Staticimage/KFC-14.02-3.jpg',
+                    'assets/photogeneration_Staticimage/black-lion-lighter-visual-(NEW)-Camera.jpg',
+                    'assets/photogeneration_Staticimage/KFC-06.03-2.png',
+                    'assets/photogeneration_Staticimage/KFC 18.03.2024 2.png',
+                    'assets/photogeneration_Staticimage/black-lion-sup-board-final.png',
+                    'assets/photogeneration_Staticimage/KFC-18.023453.png'
+                ];
+
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                this.sendButton.addEventListener('click', () => this.generateImage());
+                this.chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.generateImage();
+                    }
+                });
+            }
+
+            async generateImage() {
+                const prompt = this.chatInput.value.trim();
+                if (!prompt) return;
+
+                // Add user message
+                this.addMessage(prompt, 'user');
+                this.chatInput.value = '';
+
+                // Show generating placeholder
+                const generatingMessage = this.addMessage('სურათს ვქმნი...', 'bot', true);
+                
+                // Simulate AI image generation delay
+                setTimeout(() => {
+                    this.removeMessage(generatingMessage);
+                    
+                    // Pick a random demo image
+                    const randomImage = this.demoImages[Math.floor(Math.random() * this.demoImages.length)];
+                    
+                    // Add generated image message
+                    this.addImageMessage(`"${prompt}" - ის მიხედვით გენერირებული სურათი:`, randomImage);
+                }, 3000); // 3 second delay to simulate generation
+            }
+
+            addMessage(content, type, isGenerating = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${type}-message`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                contentDiv.textContent = content;
+                
+                if (isGenerating) {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'image-placeholder';
+                    placeholder.textContent = 'AI სურათს ქმნის...';
+                    contentDiv.appendChild(placeholder);
+                }
+                
+                messageDiv.appendChild(contentDiv);
+                this.chatMessages.appendChild(messageDiv);
+                
+                // Scroll to bottom
+                this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+                
+                return messageDiv;
+            }
+
+            addImageMessage(text, imageSrc) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot-message';
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                contentDiv.textContent = text;
+                
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.className = 'generated-image';
+                img.alt = 'AI Generated Image';
+                
+                contentDiv.appendChild(img);
+                messageDiv.appendChild(contentDiv);
+                this.chatMessages.appendChild(messageDiv);
+                
+                // Scroll to bottom
+                this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+            }
+
+            removeMessage(messageElement) {
+                if (messageElement && messageElement.parentNode) {
+                    messageElement.parentNode.removeChild(messageElement);
+                }
+            }
+        }
+
+        // Mobile Menu Functionality
+        class MobileMenu {
+            constructor() {
+                this.menuBtn = document.getElementById('mobileMenuBtn');
+                this.navLinks = document.getElementById('navLinks');
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                this.menuBtn.addEventListener('click', () => this.toggleMenu());
+                
+                // Close menu when clicking on a link
+                this.navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => this.closeMenu());
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!this.menuBtn.contains(e.target) && !this.navLinks.contains(e.target)) {
+                        this.closeMenu();
+                    }
+                });
+
+                // Close menu on window resize if screen becomes large
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        this.closeMenu();
+                    }
+                });
+            }
+
+            toggleMenu() {
+                this.menuBtn.classList.toggle('active');
+                this.navLinks.classList.toggle('active');
+            }
+
+            closeMenu() {
+                this.menuBtn.classList.remove('active');
+                this.navLinks.classList.remove('active');
+            }
+        }
+
+        // Initialize both bots and mobile menu when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new ContentGenerationBot();
+            new ImageGenerationBot();
+            new MobileMenu();
+                 });
+
+        // Password Protection System
+        class PasswordGate {
+            constructor() {
+                this.correctPassword = 'BuffLabs2025'; // Change this to your desired password
+                this.passwordInput = document.getElementById('passwordInput');
+                this.passwordBtn = document.getElementById('passwordBtn');
+                this.passwordError = document.getElementById('passwordError');
+                this.passwordGate = document.getElementById('passwordGate');
+                this.mainContent = document.getElementById('mainContent');
+                
+                this.initializeEventListeners();
+                this.checkStoredAccess();
+            }
+
+            initializeEventListeners() {
+                this.passwordBtn.addEventListener('click', () => this.checkPassword());
+                this.passwordInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.checkPassword();
+                    }
+                });
+                this.passwordInput.addEventListener('input', () => {
+                    this.passwordError.style.display = 'none';
+                });
+            }
+
+            checkPassword() {
+                const enteredPassword = this.passwordInput.value.trim();
+                
+                if (enteredPassword === this.correctPassword) {
+                    this.unlockPresentation();
+                } else {
+                    this.showError();
+                }
+            }
+
+            unlockPresentation() {
+                // Store access in session storage
+                sessionStorage.setItem('buffLabsAccess', 'granted');
+                
+                // Hide password gate and show main content
+                this.passwordGate.style.opacity = '0';
+                setTimeout(() => {
+                    this.passwordGate.style.display = 'none';
+                    this.mainContent.classList.add('unlocked');
+                }, 300);
+            }
+
+            showError() {
+                this.passwordError.style.display = 'block';
+                this.passwordInput.style.borderColor = '#e74c3c';
+                this.passwordInput.value = '';
+                
+                // Reset border color after 3 seconds
+                setTimeout(() => {
+                    this.passwordInput.style.borderColor = '#e0e0e0';
+                }, 3000);
+            }
+
+            checkStoredAccess() {
+                // Check if user already has access in this session
+                if (sessionStorage.getItem('buffLabsAccess') === 'granted') {
+                    this.passwordGate.style.display = 'none';
+                    this.mainContent.classList.add('unlocked');
+                }
+            }
+        }
+
+        // Initialize password gate immediately
+        new PasswordGate();
+    </script>
+    
+    </div> <!-- End Main Content -->
+
+</body>
+</html>

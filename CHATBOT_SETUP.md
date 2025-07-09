@@ -1,4 +1,4 @@
-# Extra + Biletebi Chatbot Demo Setup Guide
+# Extra Chatbot Demo Setup Guide
 
 ## 🚀 How to Test the Chatbot Demo
 
@@ -10,7 +10,7 @@ The API key is already pre-configured for this demo. Simply:
 2. Navigate to the "Solutions" section
 3. Find the "Content Generation Engine" demo
 4. Click "Connect" (API key is already filled)
-5. Start chatting in Georgian about Extra.ge and Biletebi.ge!
+5. Start chatting in Georgian about Extra.ge!
 
 ### Step 2: Using Your Own API Key (Optional)
 
@@ -23,25 +23,25 @@ If you want to use your own Gemini API key:
 ## 🤖 Chatbot Features
 
 - **Georgian Language Only**: All responses are in Georgian (ქართული ენა)
-- **Dual Platform Focus**: Covers both Extra.ge and Biletebi.ge
+- **Platform Focus**: Dedicated to Extra.ge
 - **Content Generation**: Creates marketing content, social media posts, email campaigns
-- **Brand Voice**: Maintains consistent brand voice for both platforms
+- **Brand Voice**: Maintains consistent brand voice for Extra.ge
 - **Multi-Purpose**: Suitable for various marketing materials and campaigns
 
 ## 💡 Example Questions (in Georgian)
 
 - `შექმენი პოსტი Extra.ge-ს ახალი პროდუქტების შესახებ`
-- `დაწერე Biletebi.ge-ზე ახალი კონცერტების პრომო`
+- `დაწერე Extra.ge-ზე ახალი პროდუქტების პრომო`
 - `როგორ განსხვავდება Extra.ge სხვა e-commerce პლატფორმებისგან?`
-- `შექმენი სოციალური მედიის კონტენტი ორივე პლატფორმისთვის`
+- `შექმენი სოციალური მედიის კონტენტი Extra.ge-სთვის`
 - `დაწერე იმეილი კამპანია Extra.ge-ს ფასდაკლებისთვის`
-- `შექმენი კონტენტი Biletebi.ge-ზე ახალი ღონისძიებებისთვის`
+- `შექმენი კონტენტი Extra.ge-ს ფასდაკლების კამპანიისთვის`
 
 ## 🔧 Technical Details
 
 - **API**: Google Gemini Pro
-- **Master Prompt**: Ensures responses stay focused on Extra.ge and Biletebi.ge using Georgian language
-- **Dual Platform Knowledge**: Comprehensive information about both e-commerce and ticketing platforms
+- **Master Prompt**: Ensures responses stay focused on Extra.ge using Georgian language
+- **Platform Knowledge**: Comprehensive information about Extra.ge e-commerce platform
 - **Error Handling**: Graceful error handling with user-friendly Georgian messages
 - **Responsive Design**: Works on desktop and mobile devices
 - **Pre-configured**: Ready to use with minimal setup

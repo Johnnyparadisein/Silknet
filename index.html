@@ -6,111 +6,11 @@
     <title>Bundle Deck - Buff.Labs x Extra</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=Syne:wght@800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles.css">
-    
-    <style>
-        #passwordGate {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            backdrop-filter: blur(10px);
-        }
-        
-        .password-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-        
-        .password-logo {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-        
-        .password-subtitle {
-            color: #666;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-        
-        .password-input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-        
-        .password-input:focus {
-            border-color: #0099ff;
-        }
-        
-        .password-btn {
-            width: 100%;
-            padding: 1rem;
-            background: #0099ff;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        
-        .password-btn:hover {
-            background: #0077cc;
-        }
-        
-        .password-error {
-            color: #e74c3c;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            display: none;
-        }
-        
-        .main-content {
-            display: none;
-        }
-        
-        .main-content.unlocked {
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <!-- Password Gate -->
-    <div id="passwordGate">
-        <div class="password-container">
-            <div class="password-logo">Buff.Labs</div>
-            <div class="password-subtitle">Enter password to access the presentation</div>
-            <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
-            <button class="password-btn" id="passwordBtn">Access Presentation</button>
-            <div class="password-error" id="passwordError">Incorrect password. Please try again.</div>
-        </div>
-    </div>
 
-    <!-- Main Content (Hidden by default) -->
-    <div class="main-content" id="mainContent">
+  </head>
+  <body>
     
     <!-- Hidden SVG Icon Definitions -->
     <svg style="display: none;" aria-hidden="true">
@@ -1023,79 +923,8 @@ Current task: Generate helpful, engaging content about Extra.ge in Georgian lang
             new MobileMenu();
                  });
 
-        // Password Protection System
-        class PasswordGate {
-            constructor() {
-                this.correctPassword = 'BuffLabs2025'; // Change this to your desired password
-                this.passwordInput = document.getElementById('passwordInput');
-                this.passwordBtn = document.getElementById('passwordBtn');
-                this.passwordError = document.getElementById('passwordError');
-                this.passwordGate = document.getElementById('passwordGate');
-                this.mainContent = document.getElementById('mainContent');
-                
-                this.initializeEventListeners();
-                this.checkStoredAccess();
-            }
 
-            initializeEventListeners() {
-                this.passwordBtn.addEventListener('click', () => this.checkPassword());
-                this.passwordInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        this.checkPassword();
-                    }
-                });
-                this.passwordInput.addEventListener('input', () => {
-                    this.passwordError.style.display = 'none';
-                });
-            }
-
-            checkPassword() {
-                const enteredPassword = this.passwordInput.value.trim();
-                
-                if (enteredPassword === this.correctPassword) {
-                    this.unlockPresentation();
-                } else {
-                    this.showError();
-                }
-            }
-
-            unlockPresentation() {
-                // Store access in session storage
-                sessionStorage.setItem('buffLabsAccess', 'granted');
-                
-                // Hide password gate and show main content
-                this.passwordGate.style.opacity = '0';
-                setTimeout(() => {
-                    this.passwordGate.style.display = 'none';
-                    this.mainContent.classList.add('unlocked');
-                }, 300);
-            }
-
-            showError() {
-                this.passwordError.style.display = 'block';
-                this.passwordInput.style.borderColor = '#e74c3c';
-                this.passwordInput.value = '';
-                
-                // Reset border color after 3 seconds
-                setTimeout(() => {
-                    this.passwordInput.style.borderColor = '#e0e0e0';
-                }, 3000);
-            }
-
-            checkStoredAccess() {
-                // Check if user already has access in this session
-                if (sessionStorage.getItem('buffLabsAccess') === 'granted') {
-                    this.passwordGate.style.display = 'none';
-                    this.mainContent.classList.add('unlocked');
-                }
-            }
-        }
-
-        // Initialize password gate immediately
-        new PasswordGate();
     </script>
-    
-    </div> <!-- End Main Content -->
 
 </body>
 </html>

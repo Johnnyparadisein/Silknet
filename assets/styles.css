@@ -184,7 +184,8 @@ h1, h2, h3, .item-title-strong {
 
 h1 {
     font-size: 4rem;
-    font-weight: 700;
+    font-weight: 900;
+    font-family: 'Syne', sans-serif;
     margin-bottom: 0.5rem;
 }
 
@@ -804,7 +805,7 @@ p {
 
 /* Authentic Telegram Styling */
 .telegram-demo {
-    max-width: 320px;
+    max-width: 420px;
     background: #ffffff;
     border-radius: 12px;
     overflow: hidden;
@@ -858,10 +859,10 @@ p {
 
 .telegram-messages {
     padding: 1rem;
-    max-height: 280px;
+    max-height: 350px;
     overflow-y: auto;
     background: #f7f7f7;
-    min-height: 200px;
+    min-height: 250px;
 }
 
 .message-date {
@@ -1263,7 +1264,7 @@ p {
     }
     
     .telegram-messages {
-        max-height: 220px;
+        max-height: 280px;
     }
     
     /* Video showcase responsive */
